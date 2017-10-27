@@ -18,58 +18,66 @@ var Hand = (function () {
     };
 
     Hand.prototype.getBestHand = function () {
-
+        
         var cardGroups = getGroups(this.cards);
-
-        ///// Royal Flush - 250:1 - including ace, king, queen, jack, and ten all in the same suit,
+        
         if (isRoyalFlush(cardGroups, this.cards)) {
-            winner.innerHTML = "RoyalFlush! Way to go";
+            // return {
+                name: "Royal Flush!"
+                multiplier: 250
+            // }
         }
-
-        ///// Straight Flush - 50:1 - five cards of sequential rank, all the same suit
-        else if (isStraightFlush(this.cards)) {
-            winner.innerHTML = "Straight Flush! Almost there.";
+        else if (isStraightFlush(cardGroups)) {
+            return {
+                name: "Straight Flush",
+                multiplier: 50,
+            }
         }
-
-        ///// test 4 of a kind - 40:1 -is a poker hand containing four cards of the same rank and one card of another rank 
         else if (isFourOfAKind(cardGroups)) {
-            winner.innerHTML = "Four of a Kind!";
+            return {
+                name: "Four Of A Kind",
+                multiplier: 40,
+            }
         }
-
-        ///// Full House - 10:1 -  is a poker hand containing three cards of one rank and two cards of another rank, 
         else if (isFullHouse(cardGroups)) {
-            winner.innerHTML = "Full House!";
+            return {
+                name: "Full House",
+                multiplier: 10,
+            }
         }
-
-        ///// Flush - 7:1 - is a poker hand containing five cards all of the same suit, not all of sequential rank,
         else if (isFlush(this.cards)) {
-            winner.innerHTML = "Flush! Getting a little better.";
+            return {
+                name: "Flush",
+                multiplier: 7,
+            }
         }
-
-        ///// Straight - 5:1 -  is a poker hand containing five cards of sequential rank, not all of the same suit, 
         else if (isStraight(this.cards)) {
-            winner.innerHTML = "Straight! Getting better.";
+            return {
+                name: "Straight",
+                multiplier: 5,
+            }
         }
-
-        ///// 3 of a Kind - 3:1 -  is a poker hand containing three cards of the same rank and two cards of two other ranks 
         else if (isThreeOfAKind(cardGroups)) {
-            winner.innerHTML = "Three of a Kind! okay-okay!?!";
+            return {
+                name: "Three Of A Kind",
+                multiplier: 3,
+            }
+        }else if (isTwoPair(cardGroups)) {
+            return {
+                name: "Is Two Pair",
+                multiplier: 2,
+            }
         }
-
-        ///// 2 Pairs - 2:1 -is a poker hand containing two cards of the same rank, two cards of another rank and one card of a third rank 
-        else if (isTwoPair(cardGroups)) {
-            winner.innerHTML = "Two Pairs. ";
-        }
-        ///// 1 Pair Jacks or Better - 1:1 - or simply a pair, is a poker hand containing two cards of the same rank and three cards of three other ranks
         else if (isJacksOrBetter(cardGroups)) {
-            winner.innerHTML = "Jacks-Or-Better, just enough";
+            return {
+                name: "Jacks OR Better",
+                multiplier: 1,
+            }
         }
         else {
-            winner.innerHTML = "G-A-M-E  O-V-E-R!";
+            name: "G-A-M-E O-V-E-R!"
+            multiplier: 0
         }
-
-
-        return cardGroups;
     };
 
 

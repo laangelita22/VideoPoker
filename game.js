@@ -48,7 +48,6 @@ var Game = (function () {
 
 		// refering to button created below. 
 		dealButton.addEventListener("click", function () {
-			debugger
 			self.deal();
 		})
 	}
@@ -99,9 +98,9 @@ var Game = (function () {
 			bank.innerHTML = this.player.account;
 			winner.innerHTML = bestHand.name;
 
-			this.newHand = true;
-			// document.getElementById("deal").addAttribute("disabled");
-			
+			if (this.newHand = true) {
+			document.getElementById("deal").addAttribute("disabled");
+			}
 		}
 
 	};
