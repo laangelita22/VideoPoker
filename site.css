@@ -1,0 +1,15 @@
+body {
+	margin: 20px;
+}
+
+.cards {
+  display: inline-block;
+  margin: 3px;
+  width: 100px;
+}
+
+/* How card looks when helds */
+.hold {
+  border: 3px solid green;
+  border-radius: 5px;
+}
