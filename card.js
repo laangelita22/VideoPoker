@@ -33,7 +33,5 @@ var Card = (function () {
         return "Spades";
     }
 
-
-
     return Card;
 })();

@@ -1,36 +1,15 @@
+
+
 var Player = (function () {
-	
-	function Player() {
-		this.player 
-	}
 
+	function Player(balance) {
+		this.account = balance || 1000
+	};
 
-
-
-
-	// let bankValue = 100;
-	// let playerBet = 0;
-
-	// // inside the deal function
-	// playerBank -= playerBet;
-	
-
-	// // with event Listener
-	// bankValue -= playerBet;
-	// document.getElementById('bank').innerHTML = bankValue;
-	
-	// // if winner 
-	// bankValue += (playerBet * 2);
-	
-
-
-
-
-
-
-
-
+	Player.prototype.updateAccount = function (amount) {
+		this.account += amount;
+	};
 
 	return Player;
-	
+
 })();

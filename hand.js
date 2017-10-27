@@ -10,7 +10,7 @@ var Hand = (function () {
     };
 
 
-    Hand.prototype.removeCards = function (names) {
+    Hand.prototype.deleteCards = function (names) {
         this.cards = this.cards.filter(function (item) {
             return !names.includes(item.name);
         });
@@ -34,6 +34,11 @@ var Hand = (function () {
         ///// test 4 of a kind - 40:1 -is a poker hand containing four cards of the same rank and one card of another rank 
         else if (isFourOfAKind(cardGroups)) {
             winner.innerHTML = "Four of a Kind!";
+        }
+
+        ///// Full House - 10:1 -  is a poker hand containing three cards of one rank and two cards of another rank, 
+        else if (isFullHouse(cardGroups)) {
+            winner.innerHTML = "Full House!";
         }
 
         ///// Flush - 7:1 - is a poker hand containing five cards all of the same suit, not all of sequential rank,
@@ -97,11 +102,7 @@ var Hand = (function () {
         // If the position of cardValue 10 is at position 0 
         var positionZero = 0;
 
-        var isFlush = cards.length === 5 &&
-            cards[0].suit === cards[1].suit &&
-            cards[0].suit === cards[2].suit &&
-            cards[0].suit === cards[3].suit &&
-            cards[0].suit === cards[4].suit;
+        // run isFlush function
 
         // do the function cards AKQJ10 == if the first card in the group starts with 10
         for (var key in cardGroups) {
@@ -125,11 +126,7 @@ var Hand = (function () {
 
 
 
-        // var isFlush = cards.length === 5 &&
-        //     cards[0].suit === cards[1].suit &&
-        //     cards[0].suit === cards[2].suit &&
-        //     cards[0].suit === cards[3].suit &&
-        //     cards[0].suit === cards[4].suit;
+        // run isFlush function
 
         // for(var key in cardGroups) {
 
@@ -150,34 +147,26 @@ var Hand = (function () {
     // four cards all have same numerical value -- suits not important
     function isFourOfAKind(cardGroups) {
 
-        for (var key in cardGroups) {
+        var names = Object.getOwnPropertyNames(cardGroups);
+        if (names.length === 2) {
+            return names.some(function (name) {
+                return cardGroups[name] === 4;
+            });
+        };
+    };
 
-            var value = cardGroups[key];
-
-            if (value === 1 || value === 4) {
-                return true;
-            }
-            else {
-                return false;
-            }
-        }
-    }
 
     // Three of one kind -- two of another -- suits not important
     function isFullHouse(cardGroups) {
 
-        for (var key in cardGroups) {
+        var names = Object.getOwnPropertyNames(cardGroups);
+        if (names.length === 2) {
+            return names.some(function (name) {
+                return cardGroups[name] === 3;
+            });
+        };
+    };
 
-            var value = cardGroups[key];
-
-            if (value === 2 && value === 3 || value === 3 && value === 2) {
-                return true;
-            }
-            else {
-                return false;
-            }
-        }
-    }
 
     // Checking to see if all suits are the same
     function isFlush(cards) {
@@ -191,9 +180,8 @@ var Hand = (function () {
         if (isFlush) {
             return true;
         }
-        else {
-            return false;
-        }
+        return false;
+
     }
 
     function isStraight(cards) {
@@ -201,30 +189,48 @@ var Hand = (function () {
 
     }
 
+
     function isThreeOfAKind(cardGroups) {
 
-        for (var key in cardGroups) {
+        var names = Object.getOwnPropertyNames(cardGroups);
+        if (names.length === 3) {
+            return names.some(function (name) {
+                return cardGroups[name] === 3;
+            });
+        };
+    };
 
-            var value = cardGroups[key];
-
-            if (value === 3) {
-                return true;
-            }
-            else {
-                return false;
-            }
-        }
-    }
 
     function isTwoPair(cardGroups) {
 
+        var pairCount = 0;
 
+        for (var key in cardGroups) {
+            var value = cardGroups[key];
+            if (value === 2) {
+                pairCount++;
+            }
+        }
+        if (pairCount === 2) {
+            return true;
+        }
+        return false;
     }
 
-    function isJacksOrBetter(cards) {
-        // 11 +
+    function isJacksOrBetter(cardGroups) {
 
-    }
+        var names = Object.getOwnPropertyNames(cardGroups);
+        if (names.length === 4) {
+            return names.some(function (name) {
+                console.log("name", name);
+                if (name > 10) {
+                    if (cardGroups[name] === 2) {
+                        return true;
+                    }
+                }
+            });
+        };
+    };
 
 
 

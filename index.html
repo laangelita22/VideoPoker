@@ -13,14 +13,14 @@
 
 <body>
 
-    <div class="container">
+    <div class="container text-center">
 
-        <!-- <div id="winner" class="alert hidden"></div> -->
-        <div id="winner" class="alert"></div>
+
 
 
         <button id="bet" class="btn btn-primary">Bet</button>
-        <button id="deal" class="btn btn-primary">Deal</button>
+        <!-- disabled attribute is so that the button is unable to use but visable -->
+        <button id="deal" disabled class="btn btn-primary ">Deal</button>
         <button id="hold" class="btn btn-primary hidden">Hold</button>
 
         <div id="playerCards"></div>
@@ -28,24 +28,26 @@
 
 
 
-    
 
-
-        <!-- My betting WAY -->
         <div>
             <h3>BANK: </h3>
-            <span id="bank">  </span>
-            <div class="input-group">            
-            <span class="input-group-addon">$</span>
-            <input type="number" id="betAmount" value="5" min="1" max="50">
+            <span id="bank">
+                <p>This is starting Value</p>
+            </span>
+            <div id="winner" class="alert"> </div>
+
+            <div class="input-group">
+                <span class="input-group-addon">$</span>
+                <input type="number" id="betAmount" value="5" min="1" max="50">
             </div>
 
+
             <div id="cardField">
-                <img class="cards" id="cardImage1" src="img/back.png" >
-                <img class="cards" id="cardImage2" src="img/back.png" >
-                <img class="cards" id="cardImage3" src="img/back.png" >
-                <img class="cards" id="cardImage4" src="img/back.png" >
-                <img class="cards" id="cardImage5" src="img/back.png" >
+                <img class="cards" id="cardImage1" src="img/back.png">
+                <img class="cards" id="cardImage2" src="img/back.png">
+                <img class="cards" id="cardImage3" src="img/back.png">
+                <img class="cards" id="cardImage4" src="img/back.png">
+                <img class="cards" id="cardImage5" src="img/back.png">
             </div>
 
         </div>
@@ -61,6 +63,11 @@
 
 
     <!-- Using different JavaScript files to contain each object seperate -->
+    <script>
+    document.getElementById("betAmount").addEventListener("click", function (event) {
+            document.getElementById("deal").removeAttribute("disabled");
+        });
+    </script>
 
     <script src="card.js"></script>
     <script src="hand.js"></script>
@@ -69,17 +76,21 @@
     <script src="game.js"></script>
 
     <script> 
+
+        
+
         // var deck = new Deck(true);
         // var hand = new Hand(deck.deal(5));
         var card = new Card(name);
 
         var hand = new Hand([
-        new Card('5H'),
-        new Card('5S'),
-        new Card('2C'),
-        new Card('2H'),
-        new Card('2D')
+            new Card('JH'),
+            new Card('QS'),
+            new Card('QD'),
+            new Card('JH'),
+            new Card('6C')
         ]);
+
 
         console.log(hand.cards);
 
