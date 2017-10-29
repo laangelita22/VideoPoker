@@ -201,30 +201,33 @@ var Hand = (function () {
 
     function isStraight(cardGroups) {
 
-        // var counter = 0;
-        // firstCard = 0;
+        var counter = 0;
+        firstCard = 0;
 
-        // for (var key in cardGroups) {
-        //     // debugger
-        //     if(cards.length === 5){
-        //         if (i=0) {
-        //             firstCard = key;
-        //         }
-        //         if(i=1) {
-        //             firstCard + 1 === key;
-        //         }
-        //         if(i=2) {
-        //             firstCard + 2 === key;
-        //         }
-        //         if(i=3) {
-        //             firstCard + 3 === key;
-        //         }
-        //         if(i+4) {
-        //             fistCard + 4 === key;
-        //         }
-        //     }
+        for (var key in cardGroups) {
+            // debugger
+            if (cards.length === 5) {
+                if (i = 0) {
+                    firstCard = key;
+                }
+                if (i = 1) {
+                    firstCard + 1 === key;
+                }
+                if (i = 2) {
+                    firstCard + 2 === key;
+                }
+                if (i = 3) {
+                    firstCard + 3 === key;
+                }
+                if (i + 4) {
+                    fistCard + 4 === key;
+                }
+                counter++
+                return true
+            }
+            return false
 
-
+        }
 
         // for (var i = 0; i < 5; i++) {
         //     if (firstCard + i === i + 1) {
@@ -234,6 +237,7 @@ var Hand = (function () {
         // }
         // return false
         // }
+
 
     }
 
