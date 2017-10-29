@@ -17,7 +17,7 @@ var Game = (function () {
 		// }
 	}
 
-	Game.prototype.play = function () {
+	Game.prototype.setUp = function () {
 		var self = this;
 
 		// code in index.html will likely be attached here
@@ -49,7 +49,12 @@ var Game = (function () {
 		// refering to button created below. 
 		dealButton.addEventListener("click", function () {
 			self.deal();
-		})
+		});
+
+		// Once a bet amount is inputed the Deal button becomes availabel
+		document.getElementById("betAmount").addEventListener("click", function (event) {
+            document.getElementById("deal").removeAttribute("disabled");
+        });
 	}
 
 	Game.prototype.deal = function () {
@@ -98,9 +103,9 @@ var Game = (function () {
 			bank.innerHTML = this.player.account;
 			winner.innerHTML = bestHand.name;
 
-			if (this.newHand = true) {
-			document.getElementById("deal").addAttribute("disabled");
-			}
+			this.newHand = true;
+			// document.getElementById("deal").addAttribute("disabled");
+			
 		}
 
 	};
@@ -118,4 +123,4 @@ var Game = (function () {
 
 	return new Game();
 
-})().play();
+})().setUp();

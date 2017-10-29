@@ -1,5 +1,18 @@
-body {
-	margin: 20px;
+/* body {
+  margin: 20px;
+} */
+
+.bg-image {
+  background-image: url("http://www.wallpapermania.eu/images/lthumbs/2013-03/4669_Red-poker-chips-in-the-spotlight-HD-wallpaper.jpg");
+}
+
+#cardField {
+  padding: 25px;
+}
+
+.game-info {
+  padding: 25px;
+  text-align: left;
 }
 
 .cards {
@@ -13,3 +26,4 @@ body {
   border: 3px solid green;
   border-radius: 5px;
 }
+
