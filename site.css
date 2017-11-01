@@ -23,7 +23,31 @@
 
 /* How card looks when helds */
 .hold {
-  border: 3px solid green;
-  border-radius: 5px;
+  border: 5px solid red;
+  border-radius: 10px;
 }
 
+h3 {
+  color: white;
+  font-size: 20px;
+}
+
+#bank {
+  color: white;
+  font-size: 20px;
+}
+
+#winner {
+  color: orangered;
+  font-size: 25px;
+}
+
+.btn-primary {
+  background-color: red;
+  border: 2px solid white;
+  padding: 10px 10px;
+}
+.btn-primary:hover {
+  background-color: snow;
+  color: darkred;
+}

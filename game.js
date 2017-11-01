@@ -1,26 +1,19 @@
 var Game = (function () {
 
 	function Game() {
-		this.deck = new Deck(true);
+		// ADD TRUE back inside deck!!!!!
+		this.deck = new Deck();
 		this.player = new Player(1000);
 		this.hand = new Hand();
 		this.newHand = true;
 		this.cardImages = [];
 		this.playerBet = 0;
-
-		// this.play = function () {
-		// 	var cardDiv = document.getElementById("cardField");
-		// 	var play = document.getElementById("play");
-
-		// 	deck = new Deck(true);
-		// 	player = new Player();
-		// }
-	}
+	};
 
 	Game.prototype.setUp = function () {
+
 		var self = this;
 
-		// code in index.html will likely be attached here
 		var dealButton = document.getElementById("deal");
 
 		this.cardImages[0] = document.getElementById("cardImage1");
@@ -49,7 +42,7 @@ var Game = (function () {
 		// refering to button created below. 
 		dealButton.addEventListener("click", function () {
 			self.deal();
-		});
+		})
 
 		// Once a bet amount is inputed the Deal button becomes availabel
 		document.getElementById("betAmount").addEventListener("click", function (event) {
@@ -104,9 +97,10 @@ var Game = (function () {
 			winner.innerHTML = bestHand.name;
 
 			this.newHand = true;
-			// document.getElementById("deal").addAttribute("disabled");
 			
-		}
+			playAgainButton.classList.toggle("hidden");
+			
+		};
 
 	};
 
@@ -120,6 +114,19 @@ var Game = (function () {
 		img.setAttribute("card-name", card.name);
 	};
 
+	var playAgainButton = document.getElementById("playAgain");	
+	playAgainButton.addEventListener("click", playAgain);
+	
+
+	function playAgain() {
+		winner.innerHTML = "";
+		cardField.innerHTML = "";
+		// Element.removeAttribute("hold");
+		this.newHand;
+			getElementByClass('cardField').removeAttribute('.hold');
+			// document.getElementById("deal").addAttribute("disabled");
+			// document.querySelectorAll("img:not(.hold)");
+	}
 
 	return new Game();
 
