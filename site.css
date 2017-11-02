@@ -3,7 +3,7 @@
 } */
 
 .bg-image {
-  background-image: url("http://www.wallpapermania.eu/images/lthumbs/2013-03/4669_Red-poker-chips-in-the-spotlight-HD-wallpaper.jpg");
+  background-image: url("http://media.istockphoto.com/photos/poker-chips-picture-id486872194?k=6&m=486872194&s=612x612&w=0&h=A-tOp2P_dDgEEAOxeAzoLRMo18WLAJfWc0vKDue_tgc=");
 }
 
 #cardField {
@@ -18,7 +18,7 @@
 .cards {
   display: inline-block;
   margin: 5px;
-  width: 125px;
+  width: 125px;  
 }
 
 /* How card looks when helds */
@@ -32,6 +32,11 @@ h3 {
   font-size: 20px;
 }
 
+.row {
+  padding-top: 100px;
+  
+}
+
 #bank {
   color: white;
   font-size: 20px;
@@ -42,10 +47,10 @@ h3 {
   font-size: 25px;
 }
 
-.sideNote {
+/* .sideNote {
   color: whtie;
   font-size: 15px;
-}
+} */
 
 .btn-primary {
   background-color: red;
