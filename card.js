@@ -5,7 +5,7 @@ var Card = (function () {
         this.name = name;
         this.value = getCardValue(name);
         this.suit = getCardSuit(name);
-    }
+    };
 
 
     function getCardValue(name) {
@@ -17,7 +17,7 @@ var Card = (function () {
         if (name[0] === "A") return 14;
 
         return parseInt(name[0]);
-    }
+    };
 
 
     function getCardSuit(name) {
@@ -31,7 +31,7 @@ var Card = (function () {
         if (suit === "C")
             return "Clubs";
         return "Spades";
-    }
+    };
 
     return Card;
 })();

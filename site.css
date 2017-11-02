@@ -17,8 +17,8 @@
 
 .cards {
   display: inline-block;
-  margin: 3px;
-  width: 100px;
+  margin: 5px;
+  width: 125px;
 }
 
 /* How card looks when helds */
@@ -40,6 +40,11 @@ h3 {
 #winner {
   color: orangered;
   font-size: 25px;
+}
+
+.sideNote {
+  color: whtie;
+  font-size: 15px;
 }
 
 .btn-primary {

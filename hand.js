@@ -108,59 +108,53 @@ var Hand = (function () {
     };
 
 
-
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Each Hand's Function~~~~
     //////Royal Flush - 250:1 - including ace, king, queen, jack, and ten all in the same suit,
     function isRoyalFlush(cardGroups, cards) {
-
+        
         // If the position of cardValue 10 is at position 0 
-        var positionZero = 0;
-
-        // run isFlush function
+    var positionZero = 0;
+    
         var isFlush = cards.length === 5 &&
             cards[0].suit === cards[1].suit &&
             cards[0].suit === cards[2].suit &&
             cards[0].suit === cards[3].suit &&
             cards[0].suit === cards[4].suit;
-
+    
         // do the function cards AKQJ10 == if the first card in the group starts with 10
         for (var key in cardGroups) {
-
+    
             // two == because string to integer
             var isTen = key == 10;
-
+    
             // making sure all requisites are passed
             if (isTen && isFlush && positionZero === 0) {
                 return true;
             }
             else {
                 return false;
-            }
+            };
         };
+
     };
 
 
     //////Straight Flush - 50:1 - five cards of sequential rank, all the same suit
     function isStraightFlush(cards, cardGroups) {
 
-
-
-        // // run isFlush function
-        if(isFlush && isStraight) {
+        if (isFlush && isStraight === true) {
             return true;
-        }
-        return false;
-
-    }
+        } else {
+            return false;
+        };
+    };
 
 
     // four cards all have same numerical value -- suits not important
     function isFourOfAKind(cardGroups) {
 
-        // var names = Object.getOwnPropertyNames(cardGroups);
+        var names = Object.getOwnPropertyNames(cardGroups);
         if (groupLength === 2) {
-
-            var names = Object.getOwnPropertyNames(cardGroups);
             return names.some(function (name) {
                 return cardGroups[name] === 4;
             });
@@ -187,35 +181,29 @@ var Hand = (function () {
             cards[0].suit === cards[1].suit &&
             cards[0].suit === cards[2].suit &&
             cards[0].suit === cards[3].suit &&
-            cards[0].suit === cards[4].suit)
+            cards[0].suit === cards[4].suit) {
 
+            //  if broken fix here !!
             return true;
+        };
 
         return false;
-        // var isFlush = cards.length === 5 &&
-        //     cards[0].suit === cards[1].suit &&
-        //     cards[0].suit === cards[2].suit &&
-        //     cards[0].suit === cards[3].suit &&
-        //     cards[0].suit === cards[4].suit;
 
-        // if (isFlush) {
-        //     return true;
-        // }
-        // return false;
+    };
 
-    }
 
     function isStraight(cardGroups) {
-debugger
-        var names = Object.getOwnPropertyNames(cardGroups);
 
+        var names = Object.getOwnPropertyNames(cardGroups);
         if (names[4] - names[0] === 4) {
             return true;
         };
 
         if (names[0] == 2) {
             if (names[3] - names[0] === 3) {
-                return true;
+                if (names[4] == 14) {
+                    return true;
+                };;
             };
             return false;
         };
@@ -244,7 +232,6 @@ debugger
     };
 
 
-
     function isJacksOrBetter(cardGroups) {
 
         var names = Object.getOwnPropertyNames(cardGroups);
@@ -253,8 +240,8 @@ debugger
                 if (name > 10) {
                     if (cardGroups[name] === 2) {
                         return true;
-                    }
-                }
+                    };
+                };
             });
         };
     };
