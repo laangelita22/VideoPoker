@@ -6,7 +6,7 @@ var Game = (function () {
 
 	function Game() {
 		// ADD TRUE back inside deck!!! When done HARDCODEING Hands
-		this.deck = new Deck();
+		this.deck = new Deck(true);
 		this.player = new Player(1000);
 		this.hand = new Hand();
 		this.newHand = true;
