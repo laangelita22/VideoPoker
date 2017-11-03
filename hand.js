@@ -28,19 +28,19 @@ var Hand = (function () {
                 multiplier: 250,
             }
         }
-        else if (isStraightFlush(cardGroups)) {
+        else if (isStraightFlush(cardGroups, this.cards)) {
             return {
                 name: "Straight Flush",
                 multiplier: 50,
             }
         }
-        else if (isFourOfAKind(cardGroups)) {
+        else if (isFourOfAKind(cardGroups, this.cards)) {
             return {
                 name: "Four Of A Kind",
                 multiplier: 40,
             }
         }
-        else if (isFullHouse(cardGroups)) {
+        else if (isFullHouse(cardGroups, this.cards)) {
             return {
                 name: "Full House",
                 multiplier: 10,
@@ -52,24 +52,24 @@ var Hand = (function () {
                 multiplier: 7,
             }
         }
-        else if (isStraight(cardGroups)) {
+        else if (isStraight(cardGroups, this.cards)) {
             return {
                 name: "Straight",
                 multiplier: 5,
             }
         }
-        else if (isThreeOfAKind(cardGroups)) {
+        else if (isThreeOfAKind(cardGroups, this.cards)) {
             return {
                 name: "Three Of A Kind",
                 multiplier: 3,
             }
-        } else if (isTwoPair(cardGroups)) {
+        } else if (isTwoPair(cardGroups, this.cards)) {
             return {
                 name: "Is Two Pair",
                 multiplier: 2,
             }
         }
-        else if (isJacksOrBetter(cardGroups)) {
+        else if (isJacksOrBetter(cardGroups, this.cards)) {
             return {
                 name: "Jacks OR Better",
                 multiplier: 1,
@@ -140,9 +140,9 @@ var Hand = (function () {
 
 
     //////Straight Flush - 50:1 - five cards of sequential rank, all the same suit
-    function isStraightFlush(cards, cardGroups) {
+    function isStraightFlush(cardGroups, cards) {
 
-        if (isFlush && isStraight === true) {
+        if (isFlush(cards) && isStraight(cardGroups)) {
             return true;
         } else {
             return false;
@@ -151,7 +151,7 @@ var Hand = (function () {
 
 
     // four cards all have same numerical value -- suits not important
-    function isFourOfAKind(cardGroups) {
+    function isFourOfAKind(cardGroups, cards) {
 
         var names = Object.getOwnPropertyNames(cardGroups);
         if (groupLength === 2) {
@@ -163,7 +163,7 @@ var Hand = (function () {
 
 
     // Three of one kind -- two of another -- suits not important
-    function isFullHouse(cardGroups) {
+    function isFullHouse(cardGroups, cards) {
 
         var names = Object.getOwnPropertyNames(cardGroups);
         if (groupLength === 2) {
@@ -185,14 +185,14 @@ var Hand = (function () {
 
             //  if broken fix here !!
             return true;
-        };
+        }
 
         return false;
 
     };
 
 
-    function isStraight(cardGroups) {
+    function isStraight(cardGroups, cards) {
 
         var names = Object.getOwnPropertyNames(cardGroups);
         if (names[4] - names[0] === 4) {
@@ -210,7 +210,7 @@ var Hand = (function () {
     };
 
 
-    function isThreeOfAKind(cardGroups) {
+    function isThreeOfAKind(cardGroups, cards) {
 
         var names = Object.getOwnPropertyNames(cardGroups);
         if (groupLength === 3) {
@@ -221,7 +221,7 @@ var Hand = (function () {
     };
 
 
-    function isTwoPair(cardGroups) {
+    function isTwoPair(cardGroups, cards) {
 
         var names = Object.getOwnPropertyNames(cardGroups);
         if (groupLength === 3) {
@@ -232,7 +232,7 @@ var Hand = (function () {
     };
 
 
-    function isJacksOrBetter(cardGroups) {
+    function isJacksOrBetter(cardGroups, cards) {
 
         var names = Object.getOwnPropertyNames(cardGroups);
         if (groupLength === 4) {
