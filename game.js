@@ -53,7 +53,8 @@ var Game = (function () {
 
 		// Defining the PlayAgainButton so that it can the the this.instance 
 		playAgainButton.addEventListener("click", function () {
-			this.deck = new Deck();
+			self.deck = new Deck(true);
+			console.log(self.deck)
 			playAgain();
 		});
 	};
@@ -102,10 +103,16 @@ var Game = (function () {
 
 			// Dependent on BestHand, how the credits are added up
 			var bestHand = this.hand.getBestHand();
-			var winnings = this.playerBet * bestHand.multiplier + this.playerBet;
+
+			if (bestHand.multiplier > 0) {
+				
+				var winnings = this.playerBet * bestHand.multiplier + this.playerBet;
+
+				this.player.updateAccount(winnings);
+
+			};
 
 			// Updating the Bank amount as well as displaying which BestHand you got
-			this.player.updateAccount(winnings);
 			bank.innerHTML = this.player.account;
 			winner.innerHTML = bestHand.name;
 
@@ -140,7 +147,7 @@ var Game = (function () {
 		// removes the previous winner display board
 		winner.innerHTML = "";
 		sideNote.innerHTML = "Feeling extra Lucky? Let us bet some more!";
-		
+
 
 		// giving a value to all things within the Class Name of "cards"
 		var cardFace = document.getElementsByClassName('cards');

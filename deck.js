@@ -15,6 +15,7 @@ var Deck = (function () {
 
         if (shuffleNow) {
             this.shuffle();
+            // this.shuffle();
         };
     };
      
