@@ -2,6 +2,9 @@ var Game = (function () {
 
 	var playAgainButton = document.getElementById("playAgain");
 	var dealButton = document.getElementById("deal");
+	let playerBank = document.getElementById("bank");
+	var betBox = document.getElementById("betAmount");
+	var resetButton = document.getElementById("resetButton");
 
 
 	function Game() {
@@ -17,6 +20,9 @@ var Game = (function () {
 	Game.prototype.setUp = function () {
 
 		var self = this;
+		playerBank.innerHTML = this.player.account;
+		sideNote.innerHTML = "Ready to Play? Place a Bet to get Started!";
+
 
 		this.cardImages[0] = document.getElementById("cardImage1");
 		this.cardImages[1] = document.getElementById("cardImage2");
@@ -62,17 +68,36 @@ var Game = (function () {
 	Game.prototype.deal = function () {
 
 		this.playerBet = document.getElementById("betAmount").valueAsNumber;
-		let playerBank = document.getElementById("bank");
 		let showHandName = document.getElementById("winner");
 
 		var self = this;
 
 		if (this.newHand) {
 
+			// Will not allow to bet more than what is in account. Refresh Page to try Again
+			if (self.playerBet > this.player.account) {
+				betBox.value = 0;
+				dealButton.classList.toggle("hidden");
+				resetButton.classList.toggle("hidden");
+				betBox.classList.toggle("hidden");
+
+				return refreshPage();
+			};
+
+			function refreshPage() {
+				sideNote.innerHTML = "NO MORE CREDITS! <br> <br> Press Reset to go 'BACK IN TIME!' For a do-over.";
+				resetButton.addEventListener("click", function () {
+					location.reload();
+				});
+			};
+
 			// removing the amount player bet && updating the bank display
 			this.player.updateAccount(-this.playerBet);
 
 			playerBank.innerHTML = this.player.account;
+			sideNote.innerHTML = "Select Cards to Hold. . .";
+			betBox.classList.toggle("hidden");
+
 
 			// dealing out the 5 cards and showing card image
 			var cards = this.deck.deal(5);
@@ -91,6 +116,9 @@ var Game = (function () {
 			var newCards = this.deck.deal(removeCards.length);
 			var removeCardNames = [];
 
+			sideNote.innerHTML = "";
+
+
 			// looping threw and removing/replacing cards wiht the hold class
 			for (var i = 0; i < removeCards.length; i++) {
 				removeCardNames.push(removeCards[i].getAttribute("card-name"));
@@ -105,7 +133,7 @@ var Game = (function () {
 			var bestHand = this.hand.getBestHand();
 
 			if (bestHand.multiplier > 0) {
-				
+
 				var winnings = this.playerBet * bestHand.multiplier + this.playerBet;
 
 				this.player.updateAccount(winnings);
@@ -115,6 +143,7 @@ var Game = (function () {
 			// Updating the Bank amount as well as displaying which BestHand you got
 			bank.innerHTML = this.player.account;
 			winner.innerHTML = bestHand.name;
+			sideNote.innerHTML = "Another Round?";
 
 			this.newHand = true;
 
@@ -147,7 +176,7 @@ var Game = (function () {
 		// removes the previous winner display board
 		winner.innerHTML = "";
 		sideNote.innerHTML = "Feeling extra Lucky? Let us bet some more!";
-
+		betBox.classList.toggle("hidden");
 
 		// giving a value to all things within the Class Name of "cards"
 		var cardFace = document.getElementsByClassName('cards');
